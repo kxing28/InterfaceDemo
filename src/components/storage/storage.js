@@ -10,14 +10,7 @@ export default function Storage(props){
         return (
             <div className = "storage-intro">
                 <p>
-                    &emsp;This is an introduction to this simple demo of applying blockchain contracts via web interface. 
-                    Here a contract is applied for storing and checking value. 
-                    The contract file can be found at "~/src/contracts/SimpleStorage.sol". 
-                    <br/>
-                    &emsp;Similar to what you see on REMIX, 
-                    the functionality of the contract can be implemented with the buttons to the right. 
-                    A value will be stored by filling in a number and clicking "store". 
-                    The value can then be read by clicking "get". 
+                    Use this to look up a student ID
                 </p>
             </div>
         )
@@ -26,13 +19,13 @@ export default function Storage(props){
     const StoreValPanel = () => {
         return (
             <div>
-                Input a positive number and click 'store':
+                Input a student address to look up their degree history:
                 <br />
-                <input width = "30px" type = "number" id = "inputVal"></input>
+                <input width = "30px" type = "address" id = "inputVal"></input>
                 <br />
                 <div className = "storage-storeBox">
                     <button className = "btn" onClick = {props.storeValHandle}>
-                        store
+                        Look up address
                     </button>
                     {
                         props.storedPending ?

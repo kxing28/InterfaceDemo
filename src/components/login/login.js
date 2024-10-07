@@ -41,11 +41,9 @@ export default function Login(props){
         <div className = "login">
             <img src = {logo} className = "login-logo" alt = "logo" />
             <h2>
-                23-24 Sem 1 EE4032 <br/>
-                Project Interface Demo
-                <br/>
+                BlockUMent <br/>
                 <span className = "login-author">
-                    Developed by: Yan Ge
+                    Developed by: George Vernon-Evans, Rodrigo Massao Tibana, Kenneth Xing
                 </span>
             </h2>
             {
