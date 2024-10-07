@@ -24,26 +24,12 @@ export default function Storage(props){
                 <input width = "30px" type = "address" id = "inputVal"></input>
                 <br />
                 <div className = "storage-storeBox">
-                    <button className = "btn" onClick = {props.storeValHandle}>
+                    <button className = "btn" onClick = {props.getCertificateHandle}>
                         Look up address
                     </button>
-                    {
-                        props.storedPending ?
-                        <span>
-                            {
-                                props.storedDone ?
-                                <span>Done! </span>:
-                                <span>Pending... </span>
-                            }
-                        </span> : 
-                        <span>
-                            {
-                                props.storedDone ?
-                                <span>Rejected! </span>:
-                                <span>Please try again. </span>
-                            }
-                        </span>
-                    }
+                    <span className = "global-message">
+                    {props.showVal}
+                    </span>
                 </div>
             </div>
         )
@@ -68,8 +54,6 @@ export default function Storage(props){
         return (
             <div className = "storage-box">
                 <StoreValPanel/>
-                <br/>
-                <GetValPanel/>
             </div>
         )
     }
