@@ -35,21 +35,6 @@ export default function Storage(props){
         )
     }
 
-    const GetValPanel = () => {
-        return (
-            <div>
-                Click 'get' to check the stored value:&nbsp;
-                <span className = "global-message">
-                    {props.showVal}
-                </span>
-                <br />
-                <button className = "btn" onClick = {props.showValHandle}>
-                    get
-                </button>
-            </div>
-        )
-    }
-
     const FunctionPanel = () => {
         return (
             <div className = "storage-box">
