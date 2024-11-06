@@ -3,7 +3,7 @@ import { Navigate } from "react-router-dom";
 import "./profile.css";
 import "../../global.css";
 import { GlobalToolBar } from "../../global";
-import METAMASK from '../../images/METAMASK.png';
+import METAMASK from '../../images/graduate-cap.webp';
 
 export default function Profile(props){
 
@@ -15,19 +15,21 @@ export default function Profile(props){
                 <img src = {METAMASK} alt = "logo" height = "100%"/>
                 <div className = "profile-account">
                     <p>
-                        <b>Profile details</b>
+                        <b>Current User Information</b>
                     </p>
                     <hr color = "black"/>
                     <p>
-                        Address:&nbsp;
+                        Blockchain Address:&nbsp;
                         <span className = "global-message">{props.address}</span>
                         <br/>
-                        Network:&nbsp;
+                        Blockchain Network:&nbsp;
                         <span className = "global-message">{props.networkType}</span>
                         <br/>
-                        Balance:&nbsp;
-                        <span className = "global-message">{props.balance}</span>
-                        &nbsp;ETH
+                        Can confer degrees?&nbsp;
+                        <span className = "response-yes">YES</span>
+                        <br/>
+                        Can receive degrees?&nbsp;
+                        <span className = "response-yes">YES</span>
                     </p>
                 </div>
             </div>

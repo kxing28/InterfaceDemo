@@ -2,7 +2,7 @@
 
 .login{
     text-align: center;
-    background-color: var(--BackgroundCovered);
+    background-color: rgb(32, 45, 69);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -19,7 +19,7 @@
 }
 
 .login-highlight{
-    color: var(--HighlightColor);
+    color: var(--MessageColorCovered);
 }
 
 .login-logo{
@@ -27,7 +27,7 @@
     pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
+/* @media (prefers-reduced-motion: no-preference) {
     .login-logo {
       animation: login-logo-spin infinite 20s linear;
     }
@@ -40,5 +40,5 @@
     to {
       transform: rotate(360deg);
     }
-}  
+}   */
 

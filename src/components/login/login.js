@@ -1,6 +1,6 @@
 import './login.css';
 import '../../global.css';
-import logo from '../../images/logo.svg';
+import logo from '../../images/graduate-cap.webp';
 
 export default function Login(props){
 

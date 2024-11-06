@@ -109,8 +109,9 @@ export default function Storage(props){
     const StoragePage = () => {
         return (
             <div className = "storage-background">
+                {/* <div className = "storage-form"> */}
                 <h1>Student Degree Page</h1>
-                Use this page to either give a degree to a student's address or look up a student's address for their degree.
+                Use this page to either give a degree or look up a student.
                     <FunctionIntro/>
                 <div className = "storage">
                     <GiveDegreePanel/>
@@ -119,6 +120,7 @@ export default function Storage(props){
                     </div>
                     <LookupStudentPanel/>
                 </div>
+            {/* </div> */}
 
                 <GlobalToolBar/>
             </div>

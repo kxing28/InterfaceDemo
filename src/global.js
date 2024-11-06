@@ -12,13 +12,13 @@ export const TopbarColor = '#61dafb';
 export const GlobalToolBar = () => {
     return (
         <div className = "global-toolbar">
-            <Link to = "/InterfaceDemo">Login</Link>
+            <Link to = "/InterfaceDemo">Link with MetaMask Wallet</Link>
             &nbsp;|&nbsp;
-            <Link to = "/InterfaceDemo/profile">Profile</Link>
+            <Link to = "/InterfaceDemo/profile">Current User Information</Link>
             &nbsp;|&nbsp;
-            <Link to = "/InterfaceDemo/storage">Storage</Link>
-            &nbsp;|&nbsp;
-            <Link to = "/InterfaceDemo/history">History</Link>
+            <Link to = "/InterfaceDemo/degree">View and Confer Degree</Link>
+            {/* &nbsp;|&nbsp;
+            <Link to = "/InterfaceDemo/history">History</Link> */}
         </div>
     )
 }

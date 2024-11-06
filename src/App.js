@@ -241,8 +241,8 @@ const RecordPush = (opr, val, detail) => {
                 <Routes>
                     <Route path = "/InterfaceDemo" element = {<Login isHaveMetamask = {haveMetamask} connectTo = {connectWallet} />}></Route>
                     <Route path = "/InterfaceDemo/profile" element = {<ProfileDisplay/>}></Route>
-                    <Route path = "/InterfaceDemo/storage" element = {<StorageDisplay/>}></Route>
-                    <Route path = "/InterfaceDemo/history" element = {<HistoryDisplay/>}></Route>
+                    <Route path = "/InterfaceDemo/degree" element = {<StorageDisplay/>}></Route>
+                    {/* <Route path = "/InterfaceDemo/history" element = {<HistoryDisplay/>}></Route> */}
                 </Routes>
             </div>
         // </BrowserRouter>

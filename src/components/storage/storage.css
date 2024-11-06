@@ -1,6 +1,10 @@
 @import "../../global.css";
 
 .storage-background{
+    background-image: url("../../images/purple-background.jpg");
+    background-size: 100%;
+    background-position-x: center;
+
     text-align: center;
     background-color: var(--BackgroundUncovered);
     min-height: 100vh;
@@ -8,11 +12,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
 }
+
 
 .storage{
     text-align: center;
-    background-color: var(--BackgroundUncovered);
+    /* background-color: var(--BackgroundUncovered); */
     width: 80%;
     display: flex;
     align-items: stretch;
