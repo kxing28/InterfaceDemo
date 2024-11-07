@@ -18,10 +18,10 @@ export default function App() {
     const [balance, setBalance] = useState(0);                  // balance of connected MetaMask account. 
     const [isConnected, setIsConnected] = useState(false);      // check if is connected to MetaMask account. 
 
-    const [storedPending, setStoredPending] = useState(false);        // check if a value is pending. 
-    const [storedDone, setStoredDone] = useState(false);        // check if a value is stored. 
-    const [storedVal, setStoredVal] = useState(0);              // value that is stored right now. 
+    const [givePending, setGivePending] = useState(false); // check if value in process of being stored
+    const [giveDone, setGiveDone] = useState(false);    // check if value done being stored
     const [showVal, setShowVal] = useState(0);                  // value that is showed on screen. 
+    const [GiveDegreeSuccess, setGiveDegreeSuccess] = useState(0)
 
     const [historyRecord, setHistoryRecord] = useState(null);   // record of history operations. 
     const [recordLen, setRecordLen] = useState(0);              // length of record. 
@@ -32,17 +32,6 @@ export default function App() {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const web3 = new Web3(Web3.givenProvider || "http://localhost:8545");
     const contract = new web3.eth.Contract(CONTRACT_ABI, CONTRACT_ADDRESS);
-
-    // useEffect(() => {
-    //     const { ethereum } = window;
-    //     const checkMetamaskAvailability = async () => {
-    //         if (!ethereum) {
-    //             setHaveMetamask(false);
-    //         }
-    //         setHaveMetamask(true);
-    //     };
-    //     checkMetamaskAvailability();
-    // }, []);
 
 ////// connect to MetaMask. 
     const connectWallet = async () => {         // function that connect to METAMASK account, activated when clicking on 'connect'. 
@@ -87,113 +76,128 @@ export default function App() {
 
 ////// Contract Deployment. 
     // IMPORTANT: async / await is essential to get values instead of Promise. 
-    const storeData = async (inputVal) => {
-        const res = await contract.methods.set(inputVal).send({from: address});
+    const getCertificate = async (studentAddress) => {
+        const res = await contract.methods.verifyCertificate(studentAddress).call();
         return res;
     }
 
-    const getData = async () => {
-        const res = await contract.methods.get().call();
+    const makeCertificate = async (studentAddress, courseName, issueDate) => {
+        // const res = await contract.methods.issueCertificate(studentAddress, courseName, issueDate).call();
+        const res = await contract.methods.issueCertificate(studentAddress, courseName, issueDate).send({from: address});
         return res;
     }
-
 
 ////// history recording. 
-    const RecordOverFlow = () => {
-        if (recordLen > maxRecordLen){
-            let outlierNum = recordLen - maxRecordLen;
-            setHistoryRecord(current => current.splice(1, outlierNum));
-            setRecordLen(maxRecordLen);
-        }
+const RecordOverFlow = () => {
+    if (recordLen > maxRecordLen){
+        let outlierNum = recordLen - maxRecordLen;
+        setHistoryRecord(current => current.splice(1, outlierNum));
+        setRecordLen(maxRecordLen);
     }
+}
 
-    const RecordPush = (opr, val, detail) => {
-        let stat = 1;
-        let cost = 0;
-        if (val.length === 0){
-            val = 'NA';
-            cost = 'NA';
-            stat = 0;
+const RecordPush = (opr, val, detail) => {
+    let stat = 1;
+    let cost = 0;
+    if (val.length === 0){
+        val = 'NA';
+        cost = 'NA';
+        stat = 0;
+    }
+    else{
+        if (opr === 'get'){
+            cost = 0;
+            stat = 1;
         }
         else{
-            if (opr === 'get'){
-                cost = 0;
-                stat = 1;
+            if (detail === 'null'){
+                setGivePending(false);
+                setGiveDone(true);
+                console.log('Rejected');
+                cost = 'NA';
+                stat = 2;
             }
             else{
-                if (detail === 'null'){
-                    setStoredPending(false);
-                    setStoredDone(true);
-                    console.log('Rejected');
-                    cost = 'NA';
-                    stat = 2;
-                }
-                else{
-                    setStoredDone(true);
-                    console.log('Done');
-                    console.log(detail);    // show the details of transaction. 
-                    cost = detail.gasUsed;
-                    stat = 1;
-                }
+                setGiveDone(true);
+                console.log('Done');
+                console.log(detail);    // show the details of transaction. 
+                cost = detail.gasUsed;
+                stat = 1;
             }
-        }
-
-        const newRecord = {
-            id: recordLen + 1, 
-            address: address, 
-            operation: opr, 
-            value: val, 
-            cost: cost, 
-            status: stat
-        };
-        if (recordLen === 0){
-            setHistoryRecord([newRecord, newRecord]);
-        }
-        else{
-            setHistoryRecord(current => [...current, newRecord]);
-        }
-        setRecordLen(recordLen + 1);
-
-        if (recordLen > maxRecordLen){
-            RecordOverFlow();
         }
     }
 
+    const newRecord = {
+        id: recordLen + 1, 
+        address: address, 
+        operation: opr, 
+        value: val, 
+        cost: cost, 
+        status: stat
+    };
+    if (recordLen === 0){
+        setHistoryRecord([newRecord, newRecord]);
+    }
+    else{
+        setHistoryRecord(current => [...current, newRecord]);
+    }
+    setRecordLen(recordLen + 1);
+
+    if (recordLen > maxRecordLen){
+        RecordOverFlow();
+    }
+}
 
 ////// store and get value. 
-    const storedValUpdate = async () => {
-        const inputVal = document.getElementById('inputVal').value;
-        setStoredPending(false);
-        setStoredDone(false);
+    const getCertificateData = async () => {
+        const inputAddress = document.getElementById('inputAddress').value;
 
-        if (inputVal.length === 0) {
+        if (inputAddress.length === 0) {
             const detail = 'null';
-            RecordPush('store', inputVal, detail);
+            RecordPush('get', inputAddress, detail)
         }
         else {
-            setStoredPending(true);
-            setStoredVal(inputVal);
-            
             try{
-                const detail = await storeData(inputVal);   // contract deployed. 
-                RecordPush('store', inputVal, detail);      // recorded. 
+                const detail = await getCertificate(inputAddress);   // retrieve student info
+                setGivePending(false);
+                setGiveDone(false);
+                setShowVal(detail)
+                RecordPush('get', inputAddress, detail)
+
             }
             catch(err){
                 const detail = 'null';                      // no detail info. 
-                RecordPush('store', inputVal, detail);      // recorded. 
+                RecordPush('get', inputAddress, detail)
             }
         }
     }
 
-    const showValUpdate = async () => {
-        const ans = await getData();
-        setStoredPending(false);
-        setStoredDone(false);
+    const giveCertificate = async () => {
+        const receiverAddress = document.getElementById('receiverAddress').value;
+        const receiverCourse = document.getElementById('receiverCourse').value;
+        const receiverIssueYear = document.getElementById('receiverIssueYear').value;
+        setGivePending(false);
+        setGiveDone(false);
 
-        setShowVal(ans);
-        RecordPush('get', ans);
+        if (receiverAddress.length === 0 || receiverCourse.length === 0 || receiverIssueYear.length === 0) {
+            const detail = 'null';
+            RecordPush('store', receiverAddress, detail)
+        }
+        else {
+            setGivePending(true);
+            try{
+                const detail = await makeCertificate(receiverAddress, receiverCourse, receiverIssueYear);   // contract deployed. 
+                console.log(detail)
+                setGiveDegreeSuccess(detail)
+                RecordPush('store', receiverAddress, detail)
+
+            }
+            catch(err){
+                const detail = 'null';                      // no detail info. 
+                RecordPush('store', receiverAddress, detail)
+            }
+        }
     }
-
 
 ////// display functions. 
     const ProfileDisplay = () => {
@@ -211,11 +215,12 @@ export default function App() {
         return (
             <Storage 
                 isConnected = {isConnected}
-                storeValHandle = {storedValUpdate} 
-                showValHandle = {showValUpdate} 
-                showVal = {showVal} 
-                storedPending = {storedPending}
-                storedDone = {storedDone}
+                getCertificateHandle = {getCertificateData}
+                giveCertificateHandle = {giveCertificate}
+                showVal = {showVal}
+                GiveDegreeSuccess = {GiveDegreeSuccess}
+                givePending = {givePending}
+                giveDone = {giveDone}
             />
         )
     }
@@ -230,15 +235,14 @@ export default function App() {
         )
     }
 
-
     return (
         // <BrowserRouter>
             <div className="App">
                 <Routes>
                     <Route path = "/InterfaceDemo" element = {<Login isHaveMetamask = {haveMetamask} connectTo = {connectWallet} />}></Route>
                     <Route path = "/InterfaceDemo/profile" element = {<ProfileDisplay/>}></Route>
-                    <Route path = "/InterfaceDemo/storage" element = {<StorageDisplay/>}></Route>
-                    <Route path = "/InterfaceDemo/history" element = {<HistoryDisplay/>}></Route>
+                    <Route path = "/InterfaceDemo/degree" element = {<StorageDisplay/>}></Route>
+                    {/* <Route path = "/InterfaceDemo/history" element = {<HistoryDisplay/>}></Route> */}
                 </Routes>
             </div>
         // </BrowserRouter>

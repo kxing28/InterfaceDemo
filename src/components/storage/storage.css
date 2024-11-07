@@ -1,6 +1,10 @@
 @import "../../global.css";
 
 .storage-background{
+    background-image: url("../../images/purple-background.jpg");
+    background-size: 100%;
+    background-position-x: center;
+
     text-align: center;
     background-color: var(--BackgroundUncovered);
     min-height: 100vh;
@@ -8,15 +12,22 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
 }
+
 
 .storage{
     text-align: center;
-    background-color: var(--BackgroundUncovered);
+    /* background-color: var(--BackgroundUncovered); */
     width: 80%;
     display: flex;
-    align-items: center;
+    align-items: stretch;
     justify-content: center;
+}
+
+.storage-nested{
+    text-align: center;
+    align-items: stretch;
 }
 
 .storage-intro{
@@ -32,6 +43,7 @@
     height: 100%;
     width: 1px;
     background-color: var(--BackgroundCovered);
+    margin: 0 20px;
 }
 
 .storage-box{
@@ -44,7 +56,7 @@
 }
 
 .storage-storeBox{
-    text-align: left;
+    text-align: center;
     font-size: 15px;
     color: var(--KeyMessageColor);
 }
@@ -53,4 +65,21 @@
     text-align: left;
     font-size: 15px;
     color: var(--MessageColorUncovered);
+}
+
+.storage-resultBox{
+    text-align: left;
+    font-size: 20px;
+}
+
+.FunctionIntro,
+.LookupStudentPanel {
+    flex: 1; /* Allow them to grow equally */
+    padding: 20px; /* Add some padding for spacing */
+}
+
+.degreeResultsTable td {
+    text-align: left;
+    padding: 5px;
+    border: none;
 }

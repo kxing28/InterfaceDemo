@@ -10,63 +10,90 @@ export default function Storage(props){
         return (
             <div className = "storage-intro">
                 <p>
-                    &emsp;This is an introduction to this simple demo of applying blockchain contracts via web interface. 
-                    Here a contract is applied for storing and checking value. 
-                    The contract file can be found at "~/src/contracts/SimpleStorage.sol". 
-                    <br/>
-                    &emsp;Similar to what you see on REMIX, 
-                    the functionality of the contract can be implemented with the buttons to the right. 
-                    A value will be stored by filling in a number and clicking "store". 
-                    The value can then be read by clicking "get". 
                 </p>
             </div>
         )
     }
 
-    const StoreValPanel = () => {
+    const LookupStudentPanel = () => {
         return (
             <div>
-                Input a positive number and click 'store':
+                <h2>Look up Student</h2>
+                Input a student address to look up their degree history:
                 <br />
-                <input width = "30px" type = "number" id = "inputVal"></input>
-                <br />
+                <input width = "30px" type = "address" id = "inputAddress"></input>
                 <div className = "storage-storeBox">
-                    <button className = "btn" onClick = {props.storeValHandle}>
-                        store
+                    <button className = "btn" onClick = {props.getCertificateHandle}>
+                        Look up address
                     </button>
-                    {
-                        props.storedPending ?
+                    <span className = "global-message">
+                    {/* {JSON.stringify(props.showVal)} */}
+                    </span>
+                </div>
+                <div className = "storage-resultBox">
+                    <b>Search Result:</b>
+                </div>
+<table className="degreeResultsTable">
+    <tbody>
+        <tr>
+            <td>Degree Recipient:</td>
+            <td>{props.showVal[1]}</td>
+        </tr>
+        <tr>
+            <td>Degree Sender:</td>
+            <td>{props.showVal[2]}</td>
+        </tr>
+        <tr>
+            <td>Degree Subject:</td>
+            <td>{props.showVal[3]}</td>
+        </tr>
+        <tr>
+            <td>Degree Issue Year:</td>
+            <td>{props.showVal[4]}</td>
+        </tr>
+    </tbody>
+</table>
+            </div>
+        )
+    }
+
+    const GiveDegreePanel = () => {
+        return (
+            <div>
+                <h2>Give a degree</h2>
+                Input address, course, and year to confer a certificate:
+                <br />
+                Address: <input width = "30px" type = "address" id = "receiverAddress"></input>
+                <br />
+                Course: <input width = "30px" type = "string" id = "receiverCourse"></input>
+                <br />
+                Issue Year: <input width = "30px" type = "uint256" id = "receiverIssueYear"></input>
+                <br />
+                <div className = "storage-giveBox">
+                <button className = "btn" onClick = {props.giveCertificateHandle}>
+                    Give Degree Now!
+                </button>
+                </div>
+                {
+                        props.givePending ?
                         <span>
                             {
-                                props.storedDone ?
+                                props.giveDone ?
                                 <span>Done! </span>:
                                 <span>Pending... </span>
                             }
                         </span> : 
                         <span>
                             {
-                                props.storedDone ?
+                                props.giveDone ?
                                 <span>Rejected! </span>:
                                 <span>Please try again. </span>
                             }
                         </span>
                     }
-                </div>
-            </div>
-        )
-    }
-
-    const GetValPanel = () => {
-        return (
-            <div>
-                Click 'get' to check the stored value:&nbsp;
                 <span className = "global-message">
-                    {props.showVal}
+                    {/* {JSON.stringify(props.GiveDegreeSuccess)} */}
                 </span>
-                <br />
-                <button className = "btn" onClick = {props.showValHandle}>
-                    get
-                </button>
             </div>
         )
     }
@@ -74,9 +101,7 @@ export default function Storage(props){
     const FunctionPanel = () => {
         return (
             <div className = "storage-box">
-                <StoreValPanel/>
-                <br/>
-                <GetValPanel/>
+                <LookupStudentPanel/>
             </div>
         )
     }
@@ -84,14 +109,18 @@ export default function Storage(props){
     const StoragePage = () => {
         return (
             <div className = "storage-background">
-                <h1>Function Page</h1>
-                <div className = "storage">
+                {/* <div className = "storage-form"> */}
+                <h1>Student Degree Page</h1>
+                Use this page to either give a degree or look up a student.
                     <FunctionIntro/>
+                <div className = "storage">
+                    <GiveDegreePanel/>
                     <div className = "storage-vertLine">
                         <p>&nbsp;<br/>&nbsp;<br/>&nbsp;<br/>&nbsp;<br/>&nbsp;<br/>&nbsp;</p>
                     </div>
-                    <FunctionPanel/>
+                    <LookupStudentPanel/>
                 </div>
+            {/* </div> */}
 
                 <GlobalToolBar/>
             </div>
