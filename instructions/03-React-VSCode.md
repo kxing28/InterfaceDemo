@@ -18,10 +18,9 @@ First you have to download and install VSCode.
 There is actually an official tutorial to use [React in VSCode](https://code.visualstudio.com/docs/nodejs/reactjs-tutorial). But the latest version of React packages does not include NodeJS polyfills that are necessary for building web3 Dapps, while the official tutorial did not mention it. So it is recommended that you follow the steps listed below here instead of the official tutorial. 
 
 - **Install necessary packages**
-  - Install [Node.js](https://nodejs.org/en/download/package-manager), in which [npm](https://www.npmjs.com/) should be included. 
+  - Install [Node.js](https://nodejs.org/en/), in which npm should be included. 
   - To verify that you have Node.js installed correctly on your computer, open a terminal or command prompt and type ```node --version``` or ```npm --version``` to check the version. 
-  - If installed correctly, you will see the following result:
-  ![node-version](https://i.postimg.cc/fybVLSV3/node-version.png)
+  - If installed correctly, you will see ```v20.17.0``` on the screen if you type ```node --version``` and ```10.8.3``` for ```npm --version```. Make sure that your versions are correct, or your may get into trouble installing web3 into your project (details on this issue can be found [here](https://github.com/dududududulu/InterfaceDemo/issues/4)). 
 
 - **Create the React project**
   - You can now create a new React application by typing the following command:
@@ -29,7 +28,66 @@ There is actually an official tutorial to use [React in VSCode](https://code.vis
     npx create-react-app project-name
     ```
     where ```project-name``` is the name of the folder of your application. This may take a few minutes so please wait patiently until it is done:
-    ![react-create](https://i.postimg.cc/28VqNvpM/react-create.png)
+    ```
+    Creating a new React app in C:\Users\ian_g\my-dapp.
+
+    Installing packages. This might take a couple of minutes.
+    Installing react, react-dom, and react-scripts with cra-template...
+
+
+    added 1480 packages in 1m
+
+    262 packages are looking for funding
+      run `npm fund` for details
+
+    Initialized a git repository.
+
+    Installing template dependencies using npm...
+
+    added 63 packages, and changed 1 package in 4s
+
+    262 packages are looking for funding
+      run `npm fund` for details
+    Removing template package using npm...
+
+
+    removed 1 package, and audited 1543 packages in 3s
+
+    262 packages are looking for funding
+      run `npm fund` for details
+
+    8 vulnerabilities (2 moderate, 6 high)
+
+    To address all issues (including breaking changes), run:
+      npm audit fix --force
+
+    Run `npm audit` for details.
+
+    Created git commit.
+
+    Success! Created my-dapp at C:\Users\ian_g\my-dapp
+    Inside that directory, you can run several commands:
+
+      npm start
+        Starts the development server.
+
+      npm run build
+        Bundles the app into static files for production.
+
+      npm test
+        Starts the test runner.
+
+      npm run eject
+        Removes this tool and copies build dependencies, configuration files
+        and scripts into the app directory. If you do this, you can’t go back!
+
+    We suggest that you begin by typing:
+
+      cd my-dapp
+      npm start
+
+    Happy hacking!
+    ```
 
   - Run your React application by navigating to your project folder in the terminal and type ```npm start``` to start the web server:
     ```
@@ -44,8 +102,7 @@ There is actually an official tutorial to use [React in VSCode](https://code.vis
     cd project-name
     code .
     ```
-    You should be able to see the project files in VSCode window
-    ![react-vscode](https://i.postimg.cc/tgtJNNPZ/react-vscode.png)
+    You should be able to see the project files in VSCode window. 
 
   - Open file ```App.js``` in the folder ```project-name/src``` in VSCode, replace the tenth line with the following sentence and save the changes:
     ```
@@ -54,12 +111,39 @@ There is actually an official tutorial to use [React in VSCode](https://code.vis
     You will see updates at http://localhost:3000/project-name as below
     ![react-helloworld](https://i.postimg.cc/DwG88Twc/react-helloworld.png)
   
-- **Add missing Nodejs polyfills to app**
+- **Add Web3 to your app**
   - To build a web3 application, we have to add the web3 dependency at the first line of ```App.js```:
     ```javascript
     import Web3 from "web3";
     ```
-    However, the latest version of ```create-react-app``` (>=5) does not include **NodeJS polyfills** necessary for web3 applications, so errors will occur if we add web3 to the app. So there are some more things we have to do. 
+    However, this is not naturally installed with node.js, so we have to install it in terminal:
+    ```
+    npm install web3
+    ```
+    After that, you may receive the following warnings, but your dapp will still be compiled successfully. Thus, we can just ignore these warnings about vulnerabilities since they will not affect your projects. More information on this issue can be found [here](https://github.com/facebook/create-react-app/issues/11174). 
+    ```
+    added 42 packages, and audited 1585 packages in 14s
+
+    268 packages are looking for funding
+      run `npm fund` for details
+
+    8 vulnerabilities (2 moderate, 6 high)
+
+    To address all issues (including breaking changes), run:
+      npm audit fix --force
+
+    Run `npm audit` for details.
+    ```
+    
+- **Other information you can turn to**
+  - Tutorial to use React in VSCode: https://code.visualstudio.com/docs/nodejs/reactjs-tutorial
+  - Troubleshooting for web3 probelm in latest version of ```create-react-app```: 
+    - https://github.com/web3/web3.js#web3-and-create-react-app. 
+    - https://github.com/facebook/create-react-app/issues/11174. 
+    - https://overreacted.io/npm-audit-broken-by-design/. 
+
+    
+    <!-- However, the latest version of ```create-react-app``` (>=5) does not include **NodeJS polyfills** necessary for web3 applications, so errors will occur if we add web3 to the app. So there are some more things we have to do. 
     ![web3-error](https://i.postimg.cc/XJjJHBc2/web3-error.png)
 
   - Go to your app folder and install ```react-app-rewired``` and other missing modules:
@@ -115,8 +199,4 @@ There is actually an official tutorial to use [React in VSCode](https://code.vis
     To this end, missing Nodejs polyfills should be included and your app should be doing well with web3. To see this, add the following command to the first line of ```project-name/src/App.js``` and re-run ```npm start``` in your project folder. You should be able to see your app running instead of errors. 
     ```javascript
     import Web3 from "web3";
-    ```
-
-- **Other information you can turn to**
-  - Tutorial to use React in VSCode: https://code.visualstudio.com/docs/nodejs/reactjs-tutorial
-  - Troubleshooting for web3 probelm in latest version of ```create-react-app```: https://github.com/web3/web3.js#web3-and-create-react-app
+    ``` -->
