@@ -15,7 +15,7 @@ export default function Profile(props){
                 <img src = {METAMASK} alt = "logo" height = "100%"/>
                 <div className = "profile-account">
                     <p>
-                        <b>Current User Information</b>
+                        <b>My Profile</b>
                     </p>
                     <hr color = "black"/>
                     <p>

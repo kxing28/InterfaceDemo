@@ -1,7 +1,7 @@
 @import "../../global.css";
 
 .profile-background{
-    background-image: url("../../images/pink-background.jpg");
+    /*background-image: url("../../images/pink-background.jpg");*/
     background-size: 100%;
     background-position-x: center;
 

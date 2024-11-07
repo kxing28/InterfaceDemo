@@ -22,23 +22,50 @@
 }
 
 .global-link{
-    color: #61dafb;
-}
+    position: relative;
+    top: 190px;
+    background-color: #04AA6D;
+    border-radius: 16px;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 30px;
+    font-weight: bold;
+    margin: 4px 2px;
+    cursor: pointer;
+    color: #ffffff;
 
-.global-btn{
-    font-size: 20px;
-    background-color: #61dafb;
 }
-
+ 
 .global-footer{
     text-align: bottom;
-    font-size: 10px;
+    font-size: 100px;
     color: var(--MessageColorFooter);
 }
 
 .global-toolbar{
-    font-size: 20px;
-    text-align: center;
-    padding-top: 40px;
+    position: absolute;
+    top: 8px;
+    left: 16px;
+    font-size: 27px;
+    
     color: var(--MessageColorUncovered);
+}
+
+.global-button{
+    background-color: #04AA6D;
+    padding: 15px 32px;
+    margin: 10px;
+    border-radius: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.global-button:hover{
+    background-color: #55EEAA;
 }

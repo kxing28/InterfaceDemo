@@ -12,11 +12,15 @@ export const TopbarColor = '#61dafb';
 export const GlobalToolBar = () => {
     return (
         <div className = "global-toolbar">
-            <Link to = "/InterfaceDemo">Link with MetaMask Wallet</Link>
-            &nbsp;|&nbsp;
-            <Link to = "/InterfaceDemo/profile">Current User Information</Link>
-            &nbsp;|&nbsp;
-            <Link to = "/InterfaceDemo/degree">View and Confer Degree</Link>
+            <button className = "global-button">
+                <Link to = "/InterfaceDemo" style={{ color: 'inherit', textDecoration: 'inherit'}}>Connect MetaMask Wallet</Link>
+            </button>
+            <button  className="global-button">
+                <Link to = "/InterfaceDemo/profile" style={{ color: 'inherit', textDecoration: 'inherit'}}>My Profile</Link>
+            </button>
+            <button  className="global-button">
+                <Link to = "/InterfaceDemo/degree" style={{ color: 'inherit', textDecoration: 'inherit'}}>View and Confer Degree</Link>
+            </button>
             {/* &nbsp;|&nbsp;
             <Link to = "/InterfaceDemo/history">History</Link> */}
         </div>

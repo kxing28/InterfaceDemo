@@ -1,8 +1,7 @@
 @import "../../global.css";
 
 .login{
-    text-align: center;
-    background-color: rgb(32, 45, 69);
+    background-color: rgb(48, 48, 48);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -14,17 +13,30 @@
 
 .login-author{
     text-align: center;
-    font-size: 20px;
+    font-size: 25px;
     font-weight: normal;
 }
 
 .login-highlight{
+  position: relative;
+  top: 190px;
     color: var(--MessageColorCovered);
 }
 
 .login-logo{
-    height: 40vmin;
+    position: absolute;
+    top: 50px;
+    left: 120px;
+    height: 30vmin;
     pointer-events: none;
+}
+
+.login-name{
+  position: absolute;
+  text-align: left;
+  font-size: 50px;
+  top: 40px;
+  left: 360px;
 }
 
 /* @media (prefers-reduced-motion: no-preference) {
