@@ -24,11 +24,9 @@ export default function Login(props){
         return (
             <div>
                 <p>
-    
                     <span className = "login-highlight">
                     Please log in with METAMASK to proceed
                     </span>
-                   
                 </p>
                 <a className = "global-link" onClick = {props.connectTo}>
                     CONNECT TO METAMASK 

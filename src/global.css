@@ -15,6 +15,9 @@
     --ApprovedColor: #55EEAA;
     --InvalidColor: #EAEA67;
     --RejectedColor: #EF7788;
+
+    --ButtonColor: #04AA6D;
+ 
 }
 
 .global-message{
@@ -24,7 +27,7 @@
 .global-link{
     position: relative;
     top: 190px;
-    background-color: #04AA6D;
+    background-color: var(--ButtonColor);
     border-radius: 16px;
     padding: 15px 32px;
     text-align: center;
@@ -47,25 +50,33 @@
 .global-toolbar{
     position: absolute;
     top: 8px;
-    left: 16px;
+    left: 170px;
     font-size: 27px;
-    
     color: var(--MessageColorUncovered);
 }
 
 .global-button{
-    background-color: #04AA6D;
+    background-color: var(--ButtonColor);
     padding: 15px 32px;
     margin: 10px;
     border-radius: 10px;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
+    display: inline;
     border: none;
     cursor: pointer;
     font-size: 20px;
+    color: #ffffff;
+}
+
+.global-logo{
+    position: absolute;
+    top: 5px;
+    left: -110px;
+    height: 15vmin;
+
 }
 
 .global-button:hover{
-    background-color: #55EEAA;
+    background-color: #28664a;
 }

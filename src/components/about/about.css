@@ -1,0 +1,23 @@
+@import "../../global.css";
+
+.about-background{
+    background-color: rgb(48, 48, 48);
+    background-size: 100%;
+    background-position-x: center;
+    text-align: center;
+    min-height: 100vh;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color:white;
+
+}
+.about-description{
+    position: absolute;
+    top: 70px;
+    left: 100px;
+    font-size: 30px;
+    text-align: left;
+    width: 70%;
+}

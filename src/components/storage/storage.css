@@ -1,17 +1,19 @@
 @import "../../global.css";
 
 .storage-background{
-    background-image: url("../../images/purple-background.jpg");
+    /*background-image: url("../../images/purple-background.jpg");*/
+    background-color: rgb(48, 48, 48);
     background-size: 100%;
     background-position-x: center;
 
     text-align: center;
-    background-color: var(--BackgroundUncovered);
+    /*background-color: var(--BackgroundUncovered);*/
     min-height: 100vh;
     flex-direction: column;
     display: flex;
     align-items: center;
     justify-content: center;
+    color:white;
 
 }
 

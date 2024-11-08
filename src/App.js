@@ -8,8 +8,11 @@ import './App.css';
 import Login from "./components/login/login";
 import Profile from "./components/profile/profile";
 import Storage from "./components/storage/storage";
+import Verify from "./components/verify/verify";
 import History from "./components/history/history";
+import About from "./components/about/about";
 import { CONTRACT_ABI, CONTRACT_ADDRESS } from "./contracts/config";
+
 
 export default function App() {
     const [haveMetamask, setHaveMetamask] = useState(true);     // check if the browser has MetaMask installed. 
@@ -225,12 +228,30 @@ const RecordPush = (opr, val, detail) => {
         )
     }
 
+    const VerifyDisplay = () => {
+        return (
+            <Verify
+                isConnected = {isConnected}
+                getCertificateHandle = {getCertificateData}
+                showVal = {showVal}
+            />
+        )
+    }
+
     const HistoryDisplay = () => {
         return (
             <History 
                 isConnected = {isConnected}
                 recordList = {historyRecord}
                 recordLen = {recordLen}
+            />
+        )
+    }
+
+    const AboutDisplay = () => {
+        return (
+            <About
+                isConnected = {isConnected}
             />
         )
     }
@@ -242,6 +263,8 @@ const RecordPush = (opr, val, detail) => {
                     <Route path = "/InterfaceDemo" element = {<Login isHaveMetamask = {haveMetamask} connectTo = {connectWallet} />}></Route>
                     <Route path = "/InterfaceDemo/profile" element = {<ProfileDisplay/>}></Route>
                     <Route path = "/InterfaceDemo/degree" element = {<StorageDisplay/>}></Route>
+                    <Route path = "/InterfaceDemo/verify" element = {<VerifyDisplay/>}></Route>
+                    <Route path = "/InterfaceDemo/about" element = {<AboutDisplay/>}></Route>
                     {/* <Route path = "/InterfaceDemo/history" element = {<HistoryDisplay/>}></Route> */}
                 </Routes>
             </div>

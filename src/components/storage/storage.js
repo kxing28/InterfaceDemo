@@ -14,7 +14,7 @@ export default function Storage(props){
             </div>
         )
     }
-
+/*
     const LookupStudentPanel = () => {
         return (
             <div>
@@ -27,7 +27,7 @@ export default function Storage(props){
                         Look up address
                     </button>
                     <span className = "global-message">
-                    {/* {JSON.stringify(props.showVal)} */}
+                    {/* {JSON.stringify(props.showVal)} }
                     </span>
                 </div>
                 <div className = "storage-resultBox">
@@ -56,7 +56,7 @@ export default function Storage(props){
             </div>
         )
     }
-
+*/
     const GiveDegreePanel = () => {
         return (
             <div>
@@ -70,12 +70,12 @@ export default function Storage(props){
                 Issue Year: <input width = "30px" type = "uint256" id = "receiverIssueYear"></input>
                 <br />
                 <div className = "storage-giveBox">
-                <button className = "btn" onClick = {props.giveCertificateHandle}>
-                    Give Degree Now!
-                </button>
+                    <button className = "btn" onClick = {props.giveCertificateHandle}>
+                        Give Degree Now!
+                    </button>
                 </div>
                 {
-                        props.givePending ?
+                        props.givePending ? 
                         <span>
                             {
                                 props.giveDone ?
@@ -97,7 +97,7 @@ export default function Storage(props){
             </div>
         )
     }
-
+/*
     const FunctionPanel = () => {
         return (
             <div className = "storage-box">
@@ -105,27 +105,28 @@ export default function Storage(props){
             </div>
         )
     }
-
+*/
     const StoragePage = () => {
         return (
             <div className = "storage-background">
                 {/* <div className = "storage-form"> */}
                 <h1>Student Degree Page</h1>
-                Use this page to either give a degree or look up a student.
+                Use this page to give a degree to a student.
                     <FunctionIntro/>
                 <div className = "storage">
                     <GiveDegreePanel/>
-                    <div className = "storage-vertLine">
+                    {/*<div className = "storage-vertLine">
                         <p>&nbsp;<br/>&nbsp;<br/>&nbsp;<br/>&nbsp;<br/>&nbsp;<br/>&nbsp;</p>
                     </div>
-                    <LookupStudentPanel/>
+                    <LookupStudentPanel/>*/}
                 </div>
-            {/* </div> */}
+            {/* </div>*/ }
 
                 <GlobalToolBar/>
             </div>
         )
     }
+
 
     return (
         <div>
