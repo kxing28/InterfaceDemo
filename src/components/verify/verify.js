@@ -27,9 +27,6 @@ export default function Verify(props){
                     <button className = "btn" onClick = {props.getCertificateHandle}>
                         Look up address
                     </button>
-                    <span className = "global-message">
-                    {/* {JSON.stringify(props.showVal)} */}
-                    </span>
                 </div>
                 <div className = "storage-resultBox">
                     <b>Search Result:</b>
@@ -71,7 +68,7 @@ export default function Verify(props){
     const StoragePage = () => {
         return (
             <div className = "storage-background">
-                {/* <div className = "storage-form"> */}
+    
                 <h1>Student Degree Page</h1>
                 Use this page to look up a student.
                     <FunctionIntro/>
@@ -82,7 +79,6 @@ export default function Verify(props){
                     </div>
                     <LookupStudentPanel/>
                 </div>
-            {/* </div> */}
 
                 <GlobalToolBar/>
             </div>

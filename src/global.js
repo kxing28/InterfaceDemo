@@ -31,8 +31,6 @@ export const GlobalToolBar = () => {
             <button  className="global-button">
                 <Link to = "/InterfaceDemo/about" style={{ color: 'inherit', textDecoration: 'inherit'}}>About Us</Link>
             </button>
-            {/* &nbsp;|&nbsp;
-            <Link to = "/InterfaceDemo/history">History</Link> */}
         </div>
     )
 }

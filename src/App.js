@@ -9,7 +9,6 @@ import Login from "./components/login/login";
 import Profile from "./components/profile/profile";
 import Storage from "./components/storage/storage";
 import Verify from "./components/verify/verify";
-import History from "./components/history/history";
 import About from "./components/about/about";
 import { CONTRACT_ABI, CONTRACT_ADDRESS } from "./contracts/config";
 
@@ -238,16 +237,6 @@ const RecordPush = (opr, val, detail) => {
         )
     }
 
-    const HistoryDisplay = () => {
-        return (
-            <History 
-                isConnected = {isConnected}
-                recordList = {historyRecord}
-                recordLen = {recordLen}
-            />
-        )
-    }
-
     const AboutDisplay = () => {
         return (
             <About
@@ -265,7 +254,6 @@ const RecordPush = (opr, val, detail) => {
                     <Route path = "/InterfaceDemo/degree" element = {<StorageDisplay/>}></Route>
                     <Route path = "/InterfaceDemo/verify" element = {<VerifyDisplay/>}></Route>
                     <Route path = "/InterfaceDemo/about" element = {<AboutDisplay/>}></Route>
-                    {/* <Route path = "/InterfaceDemo/history" element = {<HistoryDisplay/>}></Route> */}
                 </Routes>
             </div>
         // </BrowserRouter>
